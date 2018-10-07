@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/styles/style.css">
+
+    <title>Rock Paper Scissor</title>
+  </head>
+  <body>
+
+    <header class="" style="">
+      <h1 class="text-center m-3"><strong><i class="fa fa-hand-grab-o" style="font-size:48px;color:red"></i>ROCK <i class="fa fa-hand-paper-o" style="font-size:48px;color:red"></i>PAPER <i class="fa fa-hand-scissors-o" style="font-size:48px;color:red"></i>SCISSOR</strong></h1>
+    </header>
+
+    <main class="text-center">
+
+      <h1 id="mainHeading" class="pt-4 mb-4">USER VS COMPUTER</h1>
+
+      <div class="d-flex justify-content-center main-panel">
+
+        <div id="usr-panel" class="player-panel p-5 mr-5">
+          <h2 class="player-h2">WINNER</h2>
+          <div><ion-icon name="contacts"></ion-icon></div>
+          <div class="player-name text-center" id="name-0">USER</div>
+          <div class="player-score" id="usrScore">43</div>
+        </div>
+
+        <div class="d-flex my-auto">
+          <img id="usrChoiceImg" class="m-2" src="img/usrGif.gif" width="150px" height="150px" alt="" >
+
+          <img id="compChoiceImg" class="m-2" src="img/compGif.gif" width="150px" height="150px" alt="">
+        </div>
+
+        <div id="comp-panel" class="player-panel p-5 ml-5">
+          <h2 class="player-h2">WINNER</h2>
+          <div><ion-icon name="logo-reddit"></ion-icon></div>
+          <div class="player-name" id="name-0">COMPUTER</div>
+          <div class="player-score" id="compScore">43</div>
+
+        </div>
+        
+      </div>
+
+
+      <div id="buttonSection" class="container">
+
+        <div class="d-flex justify-content-center">
+
+          <img id="usrRbtn" class="m-3 imgBtn rounded-circle" src="assets/img/rock.png" width="7%" height="7%" alt="" >
+          <img id="usrPbtn" class="m-3 imgBtn rounded-circle" src="assets/img/paper.png" width="7%" height="7%" alt="">
+          <img id="usrSbtn" class="m-3 imgBtn rounded-circle" src="assets/img/scissor.png" width="7%" height="7%"  alt="">
+
+        </div>
+
+        <h5 class="pb-5">MAKE YOUR MOVE!</h5>     
+
+      </div>
+
+      <button id="newGameBtn" class="btn my-4 "><strong>PLAY GAME</strong></button>
+
+      
+
+    </main>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/ionicons@4.4.4/dist/ionicons.js"></script>
+
+    <script>
+      $(document).ready(()=>{
+
+        const mainHeading = $('#mainHeading');
+        const newGameBtn = $('#newGameBtn');
+        const btnSection = $('#buttonSection');
+
+        const usrChoiceImg = $('#usrChoiceImg');
+        const compChoiceImg = $('#compChoiceImg');
+
+        const usrScoreTxt = $('#usrScore');
+        const compScoreTxt = $('#compScore');
+
+
+        const usrPanel = $('#usr-panel');
+        const compPanel = $('#comp-panel');
+        const usrPanelH2 = $('#usr-panel h2');
+        const compPanelH2 = $('#comp-panel h2');
+
+        const rBtn = $('#usrRbtn');
+        const pBtn = $('#usrPbtn');
+        const sBtn = $('#usrSbtn');
+
+        const playerScore = $('.player-score');
+        const playerH2 = $('.player-h2');
+        const playerPanel = $('.player-panel');
+
+        const usrRImg = "assets/img/rock.png";
+        const usrPImg = "assets/img/paper.png";
+        const usrSImg = "assets/img/scissor.png";
+        const usrGImg = "assets/img/usrGif.gif";
+        const compRImg = "assets/img/crock.png";
+        const compPImg = "assets/img/cpaper.png";
+        const compSImg = "assets/img/cscissor.png";
+        const compGImg = "assets/img/compGif.gif";
+        
+        const usrPicArrays = [usrRImg,usrPImg,usrSImg];
+        const compPicArrays = [compRImg, compPImg, compSImg];
+
+        const choices = ['r','p','s'];
+
+        let headingText = "";
+
+        let usrScore = 0;
+        let compScore = 0;
+
+        newGameBtn.click(()=>{
+          newGameBtn.hide();
+          mainHeading.css('padding-top',"50px");
+          mainHeading.text('Let the Game Begin!');
+          btnSection.show();
+          gameInit();
+        });
+
+
+        rBtn.click(()=>{
+          mainHeading.css('color',"black");
+          usrChoiceImg.attr('src', usrGImg);
+          compChoiceImg.attr('src', compGImg);
+          setTimeout(()=>{game('r');},500); 
+        });
+
+        pBtn.click(()=>{
+          mainHeading.css('color',"black");
+          usrChoiceImg.attr('src', usrGImg);
+          compChoiceImg.attr('src', compGImg);
+          setTimeout(()=>{game('p');},500);
+        });
+
+
+        sBtn.click(()=>{
+          mainHeading.css('color',"black");
+          usrChoiceImg.attr('src', usrGImg);
+          compChoiceImg.attr('src', compGImg);
+          setTimeout(()=>{game('s');},500);
+        });
+
+        const gameInit = () => {
+          usrScore = 0;
+          compScore = 0;
+          playerScore.text('0');
+          playerH2.css("color","black");
+          usrChoiceImg.attr('src', usrGImg);
+          compChoiceImg.attr('src', compGImg);
+          playerPanel.removeClass('borderWinner');
+        }
+
+        const game = (usrChoice) => {
+
+          const usrChoiceNum = choices.indexOf(usrChoice);
+          usrChoiceImg.attr('src', usrPicArrays[usrChoiceNum]);
+          const compChoice = getCompChoice();
+          mainHeading.css('color',"orange");
+
+          switch (usrChoice + compChoice) {
+            case "rs":
+            case "pr":
+            case "sp":
+              headingText = `${convertToWord(usrChoice)} beats ${convertToWord(compChoice)}. 1 point to you!`;
+              mainHeading.text(headingText);
+              usrScore++;
+              usrScoreTxt.text(usrScore);
+              break;
+            case "rp":
+            case "ps":
+            case "sr":
+              headingText = `${convertToWord(usrChoice)} loses to ${convertToWord(compChoice)}. 1 point to computer!`;
+              mainHeading.text(headingText);
+              compScore++;
+              compScoreTxt.text(compScore);
+              break;
+            case "rr":
+            case "pp":
+            case "ss":
+              headingText = `${convertToWord(usrChoice)} equals ${convertToWord(compChoice)}. Its a Draw.`;
+              mainHeading.text(headingText);
+              break;
+          }
+
+          if ((usrScore >= 3) || (compScore >= 3)) {
+
+
+            if (usrScore >= 3) {  
+              usrPanelH2.css("color","orange");
+              usrPanelH2.text('WINNER');
+              usrPanel.addClass("borderWinner");
+              mainHeading.append(" Congrats!! You Win!!");
+            } else {
+              compPanelH2.css("color","orange");
+              compPanelH2.text('WINNER');
+              compPanel.addClass("borderWinner");
+              mainHeading.append(" Sorry.. You Lost..");
+            }
+
+            gameFin();
+
+          }  
+
+        } 
+
+        const getCompChoice = () => {                    
+          let randomNum = Math.floor((Math.random() * 3));
+          compChoiceImg.attr('src', compPicArrays[randomNum]);
+          return choices[randomNum];
+        }
+
+        const convertToWord = (letter) => {
+          if (letter === 'r') return 'Rock';
+          if (letter === 'p') return 'Paper';
+          return 'Scissor';
+        }
+
+        const gameFin = () => {
+          headingText = "PLAY AGAIN";
+          newGameBtn.text(headingText);
+          newGameBtn.show();
+          btnSection.hide();
+        }
+
+        gameInit();
+
+      });
+    </script>
+  </body>
+</html>

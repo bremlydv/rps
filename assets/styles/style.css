@@ -1,0 +1,41 @@
+      .imgBtn:hover {
+        cursor: pointer;
+      }
+
+      .borderWinner {
+        border: 2px solid orange;
+        color: orange;
+      }
+
+      main {
+        background-color:black;
+        height: 100vh;
+      }
+
+
+
+      header > h1 {
+        color: black;
+      }
+
+      h1, h5 {
+        color:orange;
+      }
+
+      .main-panel {
+        color:white; font-size: 25px;
+
+      }
+
+
+      .player-panel  h2 {
+        color:black;
+      }
+
+      ion-icon {
+        font-size: 100px;color:#f1c40f;
+      }
+
+      #buttonSection {
+        display: none;
+      }

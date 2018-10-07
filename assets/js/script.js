@@ -99,7 +99,6 @@ $(document).ready(()=>{
             case "ps":
             case "sr":
               headingText = `${convertToWord(usrChoice)} loses to ${convertToWord(compChoice)}. 1 point to computer!`;
-              mainHeading.text(headingText);
               compScore++;
               compScoreTxt.text(compScore);
               break;
@@ -107,7 +106,6 @@ $(document).ready(()=>{
             case "pp":
             case "ss":
               headingText = `${convertToWord(usrChoice)} equals ${convertToWord(compChoice)}. Its a Draw.`;
-              mainHeading.text(headingText);
               break;
           } /* end of switch */
 

@@ -1,4 +1,4 @@
-      $(document).ready(()=>{
+$(document).ready(()=>{
 
         const mainHeading = $('#mainHeading');
         const newGameBtn = $('#newGameBtn');
@@ -9,7 +9,6 @@
 
         const usrScoreTxt = $('#usrScore');
         const compScoreTxt = $('#compScore');
-
 
         const usrPanel = $('#usr-panel');
         const compPanel = $('#comp-panel');
@@ -66,7 +65,6 @@
           setTimeout(()=>{game('p');},500);
         });
 
-
         sBtn.click(()=>{
           mainHeading.css('color',"black");
           usrChoiceImg.attr('src', usrGImg);
@@ -85,18 +83,15 @@
         }
 
         const game = (usrChoice) => {
-
           const usrChoiceNum = choices.indexOf(usrChoice);
           usrChoiceImg.attr('src', usrPicArrays[usrChoiceNum]);
           const compChoice = getCompChoice();
-          mainHeading.css('color',"orange");
 
           switch (usrChoice + compChoice) {
             case "rs":
             case "pr":
             case "sp":
               headingText = `${convertToWord(usrChoice)} beats ${convertToWord(compChoice)}. 1 point to you!`;
-              mainHeading.text(headingText);
               usrScore++;
               usrScoreTxt.text(usrScore);
               break;
@@ -114,11 +109,12 @@
               headingText = `${convertToWord(usrChoice)} equals ${convertToWord(compChoice)}. Its a Draw.`;
               mainHeading.text(headingText);
               break;
-          }
+          } /* end of switch */
+
+          mainHeading.css('color',"orange");
+          mainHeading.text(headingText);
 
           if ((usrScore >= 3) || (compScore >= 3)) {
-
-
             if (usrScore >= 3) {  
               usrPanelH2.css("color","orange");
               usrPanelH2.text('WINNER');
@@ -128,14 +124,11 @@
               compPanelH2.css("color","orange");
               compPanelH2.text('WINNER');
               compPanel.addClass("borderWinner");
-              mainHeading.append(" Sorry.. You Lost..");
+              mainHeading.append(" Sorry.. You Lose..");
             }
-
             gameFin();
-
           }  
-
-        } 
+        } /* end of game function */
 
         const getCompChoice = () => {                    
           let randomNum = Math.floor((Math.random() * 3));
@@ -158,4 +151,4 @@
 
         gameInit();
 
-      });
+});
